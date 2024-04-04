@@ -196,7 +196,7 @@
 
         /* NAVBAR */
         #content nav {
-            height: 56px;
+            height: 60px;
             background: var(--light);
             padding: 0 24px;
             display: flex;
@@ -297,6 +297,7 @@
         #content nav .notification {
             font-size: 20px;
             position: relative;
+            color: var(--dark);
         }
         #content nav .notification .num {
             position: absolute;
@@ -395,7 +396,7 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu' ></i>
-			<a href="#" class="nav-link">Categories</a>
+			<!-- <a href="#" class="nav-link">Categories</a> -->
 			<form action="#">
 				<div class="form-input">
 					<input type="search" placeholder="Search...">
@@ -405,11 +406,11 @@
 			<!-- <input type="checkbox" id="switch-mode" hidden> -->
 			<!--<label for="switch-mode" class="switch-mode"></label>-->
 
-            <a href="{{ url_for('download_excel') }}" class="btn-download">
+            <a href="{{ url_for('download_excel') }}" class="btn-download" onclick="downloadList()">
 				<span class="text">Download PDF</span>
 			    <i class='bx bxs-downvote'></i>
             </a>
-            <a href="" class="btn-download" onclick="openList()">
+            <a href="" class="btn-download" onclick="switchUser()">
                 <span class="text">Switch-Uer</span>
 			    <i class='bx bxs-chevrons-down'></i>
             </a>
@@ -419,7 +420,7 @@
 				<span class="num">8</span>
 			</a>
 			<a href="#" class="profile">
-				<img src="img/people.png">
+				<img src="../Maintenance/static/img/people1.png">
 			</a>
 		</nav>
 		<!-- NAVBAR -->
