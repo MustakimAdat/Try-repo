@@ -85,10 +85,18 @@
 				<span class="text">Download PDF</span>
 			    <i class='bx bxs-downvote'></i>
             </a>
-            <a href="" class="btn-download" onclick="switchUser()">
+            <a href="" class="btn-download" onclick="openPopup()">
                 <span class="text">Switch-Uer</span>
 			    <i class='bx bxs-chevrons-down'></i>
             </a>
+             <div class="pop-up" id="popup">
+                <!-- <img src="404-tick.png" alt=""> -->
+                <h2>Thank You!</h2>
+                <p>Your Application has been succefully submited. Thank!</p>
+                <button type="button" onclick="closePopup()">OK</button>
+            </div>
+
+            
 
 			<a href="#" class="notification">
 				<i class='bx bxs-bell' ></i>
@@ -298,6 +306,6 @@
 	<!-- CONTENT -->
 	
 	<!-- SCRIPT -->
-    <script src="main.dash.js"></script>
+    <script src="main_dash.js"></script>
 </body>
 </html>

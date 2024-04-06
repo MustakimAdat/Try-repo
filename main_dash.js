@@ -54,3 +54,24 @@ const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
                 searchForm.classList.remove('show');
             }
         })
+
+
+
+
+
+
+
+
+
+
+
+
+        let poupup = document.getElementById("popup");
+
+        function openPopup(){
+          poupup.classList.add("open-popup")
+        }
+      
+        // function closePopup(){
+        //   poupup.classList.remove("open-popup")
+        // }

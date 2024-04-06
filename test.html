@@ -331,6 +331,62 @@
             max-height: calc(100vh - 56px);
             overflow-y: auto;
         }
+
+
+
+    .pop-up{
+	width: 400px;
+	background: #fff;
+	border-radius: 6px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%,-50%) scale(0.1) ;
+	text-align: center;
+	padding: 0 30px 30px;
+	color: #333;
+	visibility: hidden;
+	transition: transform 0.4s, top 0.4s;
+  }
+
+  .open-popup{
+	visibility: visible;
+	top: 50%;
+	transform: translate(-50%,-50%) scale(1) ;
+  }
+
+  .pop-up img{
+	width: 100px;
+	margin-top: -50px;
+	border-radius: 50%;
+	box-shadow: 0 2px 5px(0, 0, 0, 0.2);
+  }
+
+  .pop-up h2{
+	font-size: 38px;
+	font-weight: 500;
+	margin: 30px 0 10px;
+  }
+
+  .pop-up button{
+	width: 100%;
+	margin-top: 50px;
+	padding: 10px 0;
+	background-color: var(--blue);
+	color: #fff;
+	border: 0;
+	outline: none;
+	font-size: 18px;
+	border-radius: 4px;
+	box-shadow: 0 5px 5px(0, 0, 0, 0.2);
+	cursor: pointer;
+  }
+
+
+
+
+
+
     </style>
 
 	<title>comman</title>
@@ -405,14 +461,34 @@
 			<!-- <input type="checkbox" id="switch-mode" hidden> -->
 			<!--<label for="switch-mode" class="switch-mode"></label>-->
 
-            <a href="{{ url_for('download_excel') }}" class="btn-download" onclick="downloadList()">
+            <a href="{{ url_for('download_excel') }}" class="btn-download" >
 				<span class="text">Download PDF</span>
 			    <i class='bx bxs-downvote'></i>
             </a>
-            <a href="" class="btn-download" onclick="switchUser()">
+
+            <a href="" class="btn-download" onclick="openPopup()">
                 <span class="text">Switch-Uer</span>
 			    <i class='bx bxs-chevrons-down'></i>
             </a>
+            <div class="pop-up" id="popup">
+                <!-- <img src="404-tick.png" alt=""> -->
+                <h2>Thank You!</h2>
+                <p>Your Application has been succefully submited. Thank!</p>
+                <button type="button" onclick="closePopup()">OK</button>
+            </div>
+
+
+
+            <!-- <a href="#">Locations</a>
+            <ul class="dropdown">
+                <li><a href="#">Germany</a></li>
+                <li><a href="#">Australia</a></li>
+                <li><a href="#">Switzerland</a></li>
+                <li><a href="#">Japan</a></li>
+            </ul> -->
+
+
+
 
 			<a href="#" class="notification">
 				<i class='bx bxs-bell' ></i>
@@ -491,6 +567,20 @@
                 searchForm.classList.remove('show');
             }
         })
+
+
+
+        let poupup = document.getElementById("popup");
+
+  function openPopup(){
+    poupup.classList.add("open-popup")
+  }
+
+  function closePopup(){
+    poupup.classList.remove("open-popup")
+  }
+
+      
 
     </script>
 </body>
