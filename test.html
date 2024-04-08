@@ -387,6 +387,112 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+  .dropdown {
+	width: 300px;
+	height: fit-content;
+	box-sizing: border-box;
+	position: relative;
+  }
+  .input-box {
+	width: 100%;
+	height: 30px;
+	box-sizing: border-box;
+	outline: 0.3mm solid rgba(0, 0, 0, 0.15);
+	border-radius: 2mm;
+	padding: 25px 15px;
+	font-family: poppins;
+	font-size: 14px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	position: relative;
+  }
+  .input-box::before {
+	content: "expand_more";
+	font-family: "Material Icons";
+	position: absolute;
+	font-size: 18px;
+	top: 50%;
+	right: 15px;
+	transform: translate(0, -50%);
+	width: fit-content;
+	height: fit-content;
+  }
+  .input-box.open::before {
+	content: "expand_less";
+  }
+  .input-box:empty::after {
+	content: "Select Title";
+	color: rgba(0, 0, 0, 0.5);
+  }
+  .list {
+	position: relative;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: fit-content;
+	background: white;
+	margin-top: 5px;
+	border-radius: 2mm;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+	max-height: 0;
+	transition: 0.25s ease-out;
+  }
+  .list input {
+	display: none;
+  }
+  .list label {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: flex-start;
+	font-family: poppins;
+	font-size: 14px;
+	padding: 10px 15px;
+	box-sizing: border-box;
+	cursor: pointer;
+	position: relative;
+  }
+  .list label .material-icons-outlined,
+  .input-box .material-icons-outlined {
+	margin-right: 5px;
+	font-size: 22px;
+  }
+  .list label:hover {
+	background: rgba(0, 0, 0, 0.08);
+  }
+  input:checked + label {
+	color: rgb(20, 117, 213);
+	background: rgb(238, 245, 252);
+  }
+  input:checked + label::before {
+	content: "done";
+	font-family: "Material Icons";
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	transform: translate(0, -50%);
+	font-size: 18px;
+  }
+
+
+
+
     </style>
 
 	<title>comman</title>
@@ -461,7 +567,7 @@
 			<!-- <input type="checkbox" id="switch-mode" hidden> -->
 			<!--<label for="switch-mode" class="switch-mode"></label>-->
 
-            <a href="{{ url_for('download_excel') }}" class="btn-download" >
+            <!-- <a href="{{ url_for('download_excel') }}" class="btn-download" >
 				<span class="text">Download PDF</span>
 			    <i class='bx bxs-downvote'></i>
             </a>
@@ -471,12 +577,36 @@
 			    <i class='bx bxs-chevrons-down'></i>
             </a>
             <div class="pop-up" id="popup">
-                <!-- <img src="404-tick.png" alt=""> -->
+                 <img src="404-tick.png" alt=""> 
                 <h2>Thank You!</h2>
                 <p>Your Application has been succefully submited. Thank!</p>
                 <button type="button" onclick="closePopup()">OK</button>
-            </div>
-
+                 <img src="404-tick.png" alt=""> -->
+        
+                 <div class="dropdown">
+                    <div class="title">Department:</div>
+                    <div class="input-box"></div>
+                    <div class="list" onchange="changeOptions()">
+                      <!--<div class="search-box">
+                       <input
+                          type="search"
+                          name="department"
+                          id="search1"
+                          placeholder="Search Options"
+                          onkeyup="search(this, 'dropdown1')"
+                        />
+                      </div>-->
+                      <input type="radio" value="IT" name="drop1" id="id11" class="radio" value="IT"/>
+                      <label for="id11">IT</label>
+              
+                      <input type="radio" value="Electrical" name="drop1" id="id12" class="radio" value="Electrical"/>
+                      <label for="id12">Electrical</label>
+              
+                      <input type="radio" value="Mechanical" name="drop1" id="id13" class="radio" value="Mechanical"/>
+                      <label for="id13">Mechanical</label>
+                    </div>
+                  </div>
+              
 
 
             <!-- <a href="#">Locations</a>
@@ -510,6 +640,94 @@
 	
 	<!-- SCRIPT -->
 	<script>
+
+
+
+
+
+
+
+
+
+
+function changeOptions() {
+    var department = document.querySelector('input[name="drop1"]:checked').value;
+ 
+    var problemType = document.getElementById("dropdown2");
+    var ITProblemType = document.getElementById("ITProblemType");
+
+    if (department === "IT") {
+        problemType.style.display = "block";
+        ITProblemType.style.display = "block";
+    } else {
+        problemType.style.display = "none";
+        ITProblemType.style.display = "none";
+    }
+}
+
+
+
+  var input = document.querySelectorAll(".input-box");
+  input.forEach(function(el) {
+    el.onclick = function () {
+    this.classList.toggle("open");
+    let list = this.nextElementSibling;
+    if (list.style.maxHeight) {
+      list.style.maxHeight = null;
+      list.style.boxShadow = null;
+    } else {
+      list.style.maxHeight = list.scrollHeight + "px";
+      list.style.boxShadow =
+      "0 1px 2px 0 rgba(0, 0, 0, 0.15),0 1px 3px 1px rgba(0, 0, 0, 0.1)";
+    }
+    };
+  });
+
+  var rad = document.querySelectorAll(".radio");
+  rad.forEach((item) => {
+    item.addEventListener("change", () => {
+    var inputBox = item.parentNode.previousElementSibling;
+    inputBox.innerHTML = item.nextElementSibling.innerHTML;
+    inputBox.click();
+    var nestedLists = document.querySelectorAll('.nested-list');
+    nestedLists.forEach(function(list) {
+      list.style.display = 'none';
+    });
+    });
+  });
+
+  var label = document.querySelectorAll("label");
+  function search(searchin, dropdownId) {
+    let searchVal = searchin.value;
+    searchVal = searchVal.toUpperCase();
+    let dropdown = document.querySelector(`#${dropdownId}`);
+    let labels = dropdown.querySelectorAll("label");
+    labels.forEach((item) => {
+    let checkVal = item.textContent.toUpperCase();
+    if (checkVal.indexOf(searchVal) == -1) {
+      item.style.display = "none";
+    } else {
+      item.style.display = "flex";
+    }
+    let list = dropdown.querySelector(".list");
+    list.style.maxHeight = list.scrollHeight + "px";
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
 
@@ -550,7 +768,6 @@
                 }
             }
         })
-
 
 
         if(window.innerWidth < 768) {

@@ -72,6 +72,6 @@ const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
           poupup.classList.add("open-popup")
         }
       
-        // function closePopup(){
-        //   poupup.classList.remove("open-popup")
-        // }
+        function closePopup(){
+          poupup.classList.remove("open-popup")
+        }
